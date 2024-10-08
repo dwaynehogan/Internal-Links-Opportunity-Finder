@@ -1,4 +1,4 @@
-# Internal Link Opportunity Finder
+# Python Internal Link Opportunity Finder
 
 This Python script identifies internal linking opportunities within a list of website URLs by searching for unlinked mentions of specified keywords. It fetches the content of the provided site URLs, tokenizes the text into sentences, and searches for sentences that contain the target keywords but do not already contain a link. If such sentences are found, they are recorded as potential internal link opportunities.
 
