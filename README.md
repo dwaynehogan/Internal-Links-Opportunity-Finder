@@ -100,6 +100,8 @@ The script requires an API key for the Jina AI API to fetch the content of the U
    api_key = '{your Jini.ai API key here}'
    ```
 
+Be sure to remove the brackets {} when entering your api key.
+
 ### Running the Script
 
 Ensure that the input files (`site_urls.csv` and `target_keywords.csv`) are in the same directory as the script.
