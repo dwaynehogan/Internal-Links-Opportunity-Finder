@@ -70,7 +70,7 @@ def find_unlinked_keywords(source_url, body_text, keywords_list):
 # Main function to combine both processes
 def main():
     # Set your API key
-    api_key = '{your Jini.ai API key here}'  # Replace with your actual API key
+    api_key = '{your Jina.ai API key here}'  # Replace with your actual API key
     headers = {"Authorization": f"Bearer {api_key}"}
     
     # Load the input data
@@ -119,15 +119,24 @@ def main():
     content_df.to_csv('content.csv', index=False, quoting=csv.QUOTE_ALL, lineterminator='\n', header=False)
     print("Body content saved to 'content.csv'.")
 
+
     # If unlinked keywords are found, save them to a CSV file
     if all_results:
+        # Convert the results to a DataFrame and specify the correct column names
         results_df = pd.DataFrame(all_results)
-        # Reorder and save without headers
-        results_df = results_df[['Source URL', 'Sentence', 'Keyword', 'Target URL']]
-        results_df.to_csv('unlinked_keywords.csv', index=False, header=False)
+        results_df = results_df.rename(columns={
+            'Source URL': 'source_url',
+            'Sentence': 'sentence/paragraph',
+            'Keyword': 'link_text',
+            'Target URL': 'target_url'
+        })
+        
+        # Save the DataFrame to CSV with headers
+        results_df.to_csv('unlinked_keywords.csv', index=False, header=True)
         print("Unlinked keywords found and saved to 'unlinked_keywords.csv'.")
     else:
         print("No unlinked keywords found.")
+
 
 if __name__ == "__main__":
     main()
